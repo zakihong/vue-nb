@@ -10,6 +10,9 @@
     <div class="content">
       <div>{{msg}}</div>
       <p>this is a vue mobile template, includes:</p>
+      <ve-pie :data="chartData"></ve-pie>
+      <ve-bmap :settings="chartSettings" :series="chartSeries" :tooltip="chartTooltip">
+      </ve-bmap>
       <ul>
         <li>webpack</li>
         <li>eslint</li>
@@ -43,9 +46,39 @@
     mixins: [],
     props: [],
     data() {
+      this.chartSettings = {
+        key: 'oBvDtR6nzWtVchkY4cLHtnah1VVZQKRK',
+        bmap: {
+          center: [120, 30],
+          zoom: 14,
+          roam: true,
+          mapStyle: {}
+        }
+      };
+      this.chartTooltip = { show: true };
       return {
         msg: '本页面语言为:' + this.$t('lang'),
-        list: []
+        list: [],
+        chartSeries: [
+          {
+            type: 'scatter',
+            coordinateSystem: 'bmap',
+            data: [
+              [120, 30, 1] // 经度，维度，value，...
+            ]
+          }
+        ],
+        chartData: {
+          columns: ['日期', '访问用户'],
+          rows: [
+            { '日期': '1/1', '访问用户': 1393 },
+            { '日期': '1/2', '访问用户': 3530 },
+            { '日期': '1/3', '访问用户': 2923 },
+            { '日期': '1/4', '访问用户': 1723 },
+            { '日期': '1/5', '访问用户': 3792 },
+            { '日期': '1/6', '访问用户': 4593 }
+          ]
+        }
       };
     },
     beforeCreate() {
@@ -129,9 +162,9 @@
 
 <style lang="less" scoped>
   .index {
-    img {
-      width: 100px;
-      height: 100px;
-    }
+      img {
+          width: 100px;
+          height: 100px;
+      }
   }
 </style>

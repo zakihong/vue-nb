@@ -2,6 +2,7 @@ import Vue from 'vue';
 import MintUI from 'mint-ui';
 import FastClick from 'fastclick';
 import VueI18n from 'vue-i18n';
+import VCharts from 'v-charts';
 import router from './router';
 import store from './store';
 import components from './components';
@@ -17,7 +18,7 @@ if (window.htp.mock) {
 
 Vue.use(MintUI);
 Vue.use(VueI18n);
-
+Vue.use(VCharts);
 Vue.prototype.spread = spread;
 
 if ('addEventListener' in document) {
